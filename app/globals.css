@@ -387,13 +387,23 @@ h3 {
   align-items: center;
   justify-content: center;
   min-height: 900px;
-  max-width: 768px;
+  width: min(1007px, calc(100% - 48px));
+  max-width: 1007px;
   margin: 0 auto;
   text-align: center;
 }
 
 .hero-copy--overlay h1 {
-  color: #fff;
+  align-self: stretch;
+  max-width: none;
+  color: var(--Color-White, #fff);
+  text-align: center;
+  font-family: Poppins, var(--font-heading), sans-serif;
+  font-size: var(--Text-Sizes-Heading-1, 84px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 110%;
+  letter-spacing: -0.84px;
 }
 
 .hero-copy--overlay .hero-actions {

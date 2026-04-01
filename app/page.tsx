@@ -19,7 +19,11 @@ export default function Home() {
       <section className="hero section">
         <div className="hero-grid">
           <div className="hero-copy hero-copy--overlay">
-            <h1>{wholesaleBullets[0]?.title}</h1>
+            <h1>
+              Stop wondering where
+              <br />
+              that sponge has been
+            </h1>
             <p className="lead">
               {wholesaleBullets[0]?.description}
             </p>
