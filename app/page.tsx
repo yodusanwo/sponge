@@ -25,11 +25,13 @@ export default function Home() {
               that sponge has been
             </h1>
             <p className="lead">
-              {wholesaleBullets[0]?.description}
+              Four clearly labeled sponges — one for dishes, kitchen counters,
+              <br />
+              bathroom counters, and the toilet. No mix-ups. No second-guessing.
             </p>
 
             <div className="hero-actions">
-              <Button fullWidth href={amazonUrl}>
+              <Button href={amazonUrl}>
                 Get Chore ClarIDy on Amazon
               </Button>
               <Button href="#how-it-works" variant="secondary">
@@ -103,7 +105,6 @@ export default function Home() {
                   className="sponge-card__art"
                   style={{
                     backgroundImage: `url(${card.imageUrl})`,
-                    ["--sponge-rotate" as "--sponge-rotate"]: card.rotation ?? "0deg",
                     transform: `rotate(${card.rotation ?? "0deg"})`,
                   }}
                 />
