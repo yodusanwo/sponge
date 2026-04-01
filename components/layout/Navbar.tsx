@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { amazonUrl, navItems } from "@/lib/site-data";
@@ -7,11 +8,15 @@ export function Navbar() {
   return (
     <header className="site-header">
       <div className="shell navbar">
-        <Link aria-label="Chore ClarIDy home" className="brand" href="#top">
-          <span className="brand__chore">chore</span>
-          <span className="brand__claridy">
-            ClarIDy<span className="brand__mark">TM</span>
-          </span>
+        <Link aria-label="Chore ClarIDy home" className="brand brand--image" href="#top">
+          <Image
+            alt="Chore ClarIDy"
+            className="brand__logo"
+            height={104}
+            priority
+            src="/Logo_TM 1.png"
+            width={175}
+          />
         </Link>
 
         <nav aria-label="Primary" className="nav-links">
