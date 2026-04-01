@@ -17,7 +17,7 @@ export default function Home() {
       <Navbar />
 
       <section className="hero section">
-        <div className="shell hero-grid">
+        <div className="hero-grid">
           <div className="hero-copy hero-copy--overlay">
             <h1>{wholesaleBullets[0]?.title}</h1>
             <p className="lead">
