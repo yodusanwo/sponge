@@ -29,7 +29,9 @@ export default function Home() {
             </p>
 
             <div className="hero-actions">
-              <Button href={amazonUrl}>Get Chore ClarIDy on Amazon</Button>
+              <Button fullWidth href={amazonUrl}>
+                Get Chore ClarIDy on Amazon
+              </Button>
               <Button href="#how-it-works" variant="secondary">
                 See how it works
               </Button>
@@ -123,7 +125,11 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="comparison-table" role="table" aria-label="Comparison table">
+          <div
+            className="comparison-table comparison-table--desktop"
+            role="table"
+            aria-label="Comparison table"
+          >
             <div className="comparison-row comparison-row--head" role="row">
               <div role="columnheader">Feature</div>
               <div role="columnheader">Regular sponges</div>
@@ -136,6 +142,22 @@ export default function Home() {
                 <div role="cell">{row.regularSponges}</div>
                 <div role="cell">{row.choreClaridy}</div>
               </div>
+            ))}
+          </div>
+
+          <div className="comparison-cards comparison-cards--mobile">
+            {comparisonRows.map((row) => (
+              <article className="comparison-card" key={row.feature}>
+                <h3>{row.feature}</h3>
+                <div className="comparison-card__section">
+                  <p className="comparison-card__label">Regular sponges</p>
+                  <p>{row.regularSponges}</p>
+                </div>
+                <div className="comparison-card__section comparison-card__section--highlight">
+                  <p className="comparison-card__label">Chore ClarIDy</p>
+                  <p>{row.choreClaridy}</p>
+                </div>
+              </article>
             ))}
           </div>
         </div>
