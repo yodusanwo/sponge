@@ -103,7 +103,8 @@ export default function Home() {
                   className="sponge-card__art"
                   style={{
                     backgroundImage: `url(${card.imageUrl})`,
-                    transform: card.rotation ? `rotate(${card.rotation})` : undefined,
+                    ["--sponge-rotate" as "--sponge-rotate"]: card.rotation ?? "0deg",
+                    transform: `rotate(${card.rotation ?? "0deg"})`,
                   }}
                 />
                 <div className="sponge-card__copy">
