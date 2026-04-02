@@ -195,7 +195,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section section--compact" id="who-its-for">
+      <section className="section section--compact section--routine-summary" id="who-its-for">
         <div className="shell">
           <div className="section-heading">
             <h2>{wholesaleBullets[1]?.title}</h2>
