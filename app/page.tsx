@@ -206,7 +206,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section section--feature-audience">
         <div className="shell feature-layout">
           <div
             className="feature-layout__visual"

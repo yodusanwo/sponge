@@ -124,7 +124,9 @@ main {
 .nav-links a,
 .footer-links a,
 .footer-socials a {
-  transition: color 160ms ease, opacity 160ms ease;
+  transition:
+    color 160ms ease,
+    opacity 160ms ease;
 }
 
 .nav-cta {
@@ -168,7 +170,9 @@ main {
   border-bottom-width: 4px;
   font-size: 1.125rem;
   font-weight: 500;
-  transition: transform 160ms ease, box-shadow 160ms ease;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease;
 }
 
 .button:hover {
@@ -211,6 +215,10 @@ main {
 
 .section--compact {
   padding-bottom: 2rem;
+}
+
+.section--feature-audience {
+  padding-top: 0;
 }
 
 .hero.section {
