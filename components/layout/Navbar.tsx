@@ -8,7 +8,11 @@ export function Navbar() {
   return (
     <header className="site-header">
       <div className="shell navbar">
-        <Link aria-label="Chore ClarIDy home" className="brand brand--image" href="#top">
+        <Link
+          aria-label="Chore ClarIDy home"
+          className="brand brand--image"
+          href="#top"
+        >
           <Image
             alt="Chore ClarIDy"
             className="brand__logo"
@@ -30,6 +34,24 @@ export function Navbar() {
         <div className="nav-cta">
           <Button href={amazonUrl}>Buy on Amazon</Button>
         </div>
+
+        <details className="mobile-menu">
+          <summary aria-label="Open navigation menu" className="mobile-menu__toggle">
+            <span />
+            <span />
+            <span />
+          </summary>
+          <div className="mobile-menu__panel">
+            <nav aria-label="Mobile navigation" className="mobile-menu__links">
+              {navItems.map((item) => (
+                <Link key={item.href} href={item.href}>
+                  {item.label}
+                </Link>
+              ))}
+              <Button href={amazonUrl}>Buy on Amazon</Button>
+            </nav>
+          </div>
+        </details>
       </div>
     </header>
   );

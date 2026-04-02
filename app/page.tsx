@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { Button } from "@/components/ui/Button";
@@ -25,9 +26,9 @@ export default function Home() {
               that sponge has been
             </h1>
             <p className="lead">
-              Four clearly labeled sponges — one for dishes, kitchen counters,
-              <br />
+              4 clearly labeled sponges — one for dishes, kitchen counters,
               bathroom counters, and the toilet. No mix-ups. No second-guessing.
+              Just clean.
             </p>
 
             <div className="hero-actions">
@@ -43,7 +44,7 @@ export default function Home() {
           <div
             className="hero-photo"
             aria-hidden="true"
-            style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.42), rgba(0,0,0,0.42)), url(${figmaImages.hero})` }}
+            style={{ backgroundImage: "linear-gradient(rgba(0,0,0,0.42), rgba(0,0,0,0.42)), url('/30.jpg')" }}
           />
         </div>
       </section>
@@ -52,11 +53,18 @@ export default function Home() {
         <div className="shell split-section">
           <div className="split-copy">
             <div className="section-heading section-heading--left section-heading--wide">
-              <h2>When every sponge looks the same, mix-ups happen</h2>
+              <h2>
+                <span className="heading-line">When every sponge</span>
+                <br />
+                <span className="heading-line">looks the same —</span>
+                <br />
+                <span className="heading-line">mix-ups happen</span>
+              </h2>
               <p>
-                In most homes, every sponge looks identical, so they end up
-                everywhere. One minute it&apos;s on the dishes, the next it&apos;s wiping
-                down the bathroom.
+                In most homes, every sponge looks identical — so they end up
+                everywhere. One minute it&apos;s used in the bathroom, the next
+                it&apos;s back in your kitchen. Nobody wants that moment of
+                realization.
               </p>
             </div>
 
@@ -67,7 +75,11 @@ export default function Home() {
                     aria-hidden="true"
                     className={`bullet-icon bullet-icon--${item.tone ?? "positive"}`}
                   >
-                    {item.tone === "negative" ? "×" : "✓"}
+                    {item.tone === "negative" ? (
+                      <Image alt="" height={30} src="/close.svg" width={30} />
+                    ) : (
+                      <Image alt="" height={30} src="/check.svg" width={30} />
+                    )}
                   </span>
                   <h3>{item.title}</h3>
                   <p>{item.description}</p>
@@ -85,6 +97,24 @@ export default function Home() {
             aria-hidden="true"
             style={{ backgroundImage: `url(${figmaImages.confusion})` }}
           />
+        </div>
+      </section>
+
+      <section className="section section--brand-panel">
+        <div className="shell brand-panel-shell">
+          <div className="brand-panel-card">
+            <div className="brand-panel-card__inner">
+              <Image
+                alt="Chore ClarIDy"
+                className="brand-panel-card__logo"
+                height={230}
+                priority
+                src="/Logo_TM 1.png"
+                width={420}
+              />
+              <p className="brand-panel-card__tagline">USE-SPECIFIC LABELED SPONGES</p>
+            </div>
+          </div>
         </div>
       </section>
 

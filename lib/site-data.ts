@@ -31,14 +31,13 @@ export const navItems: NavItem[] = [
 
 export const heroBullets: Bullet[] = [
   {
-    title: "The confusion",
-    description: '"Wait... which sponge did I just use on the dishes?"',
+    title: "Confusion",
+    description: '"Wait… this isn’t the kitchen sponge, is it?"',
     tone: "negative",
   },
   {
-    title: "The clarity",
-    description:
-      "Each Chore ClarIDy sponge has one job. Always. No guessing required.",
+    title: "ClarIDy",
+    description: "Each Chore ClarIDy sponge has one job. No guessing required.",
     tone: "positive",
   },
 ];
