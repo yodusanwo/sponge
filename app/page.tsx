@@ -181,13 +181,13 @@ export default function Home() {
             {comparisonRows.map((row) => (
               <article className="comparison-card" key={row.feature}>
                 <h3>{row.feature}</h3>
-                <div className="comparison-card__section">
-                  <p className="comparison-card__label">Regular sponges</p>
-                  <p>{row.regularSponges}</p>
-                </div>
                 <div className="comparison-card__section comparison-card__section--highlight">
                   <p className="comparison-card__label">Chore ClarIDy</p>
                   <p>{row.choreClaridy}</p>
+                </div>
+                <div className="comparison-card__section">
+                  <p className="comparison-card__label">Regular sponges</p>
+                  <p>{row.regularSponges}</p>
                 </div>
               </article>
             ))}
