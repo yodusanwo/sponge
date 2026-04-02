@@ -18,6 +18,11 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Chore ClarIDy",
   description: "A clickable product prototype for the Chore ClarIDy sponge system.",
+  icons: {
+    icon: "/ChloreID.svg",
+    shortcut: "/ChloreID.svg",
+    apple: "/ChloreID.svg",
+  },
 };
 
 export const viewport: Viewport = {
