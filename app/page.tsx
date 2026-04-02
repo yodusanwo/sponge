@@ -103,17 +103,17 @@ export default function Home() {
       <section className="section section--brand-panel">
         <div className="shell brand-panel-shell">
           <div className="brand-panel-card">
-            <div className="brand-panel-card__inner">
-              <Image
-                alt="Chore ClarIDy"
-                className="brand-panel-card__logo"
-                height={230}
-                priority
-                src="/Logo_TM 1.png"
-                width={420}
-              />
-              <p className="brand-panel-card__tagline">USE-SPECIFIC LABELED SPONGES</p>
-            </div>
+            <video
+              autoPlay
+              className="brand-panel-video"
+              controls
+              loop
+              muted
+              playsInline
+              preload="metadata"
+            >
+              <source src="/download.mp4" type="video/mp4" />
+            </video>
           </div>
         </div>
       </section>
