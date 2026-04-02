@@ -121,7 +121,7 @@ export default function Home() {
       <section className="section" id="the-sponges">
         <div className="shell">
           <div className="section-heading">
-            <h2>Four areas. Four clearly labeled sponges</h2>
+            <h2>4 areas &amp; 4 clearly labeled sponges</h2>
             <p>
               No explaining. No remembering. Just grab the right one and get it
               done.
@@ -151,7 +151,7 @@ export default function Home() {
       <section className="section section--soft" id="why-better">
         <div className="shell">
           <div className="section-heading">
-            <h2>Not all sponges are the same</h2>
+            <h2 className="heading-single-line-desktop">Not all sponges are the same</h2>
             <p>
               Here&apos;s what makes Chore ClarIDy a smarter clean.
             </p>
