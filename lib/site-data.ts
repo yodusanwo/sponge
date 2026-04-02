@@ -134,7 +134,10 @@ export const wholesaleBullets: Bullet[] = [
   },
 ];
 
-export const amazonUrl = "https://www.amazon.com/";
+export const amazonUrl =
+  "https://www.amazon.com/Chore-ClarIDy-Labeled-Cleaning-Sponges/dp/B0FQTH1JYD/ref=sr_1_1?crid=30JYQM4MHZMZD&dib=eyJ2IjoiMSJ9.zuArU0aQ8nCA5_za75VATg.qy_KtqW9WUU0CSfTEYhI8PH7UQ7tmnw25FOMwEL0spY&dib_tag=se&keywords=chore+clarity+labeled+sponges&qid=1775144377&sprefix=chore+clarity+labeled+sponges%2Caps%2C125&sr=8-1";
+
+export const contactEmail = "hello@choreclaridy.com";
 
 export const figmaImages = {
   hero: "https://www.figma.com/api/mcp/asset/30f87b18-a217-4adc-8821-f149bcf0b1fa",

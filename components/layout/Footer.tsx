@@ -1,12 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { FooterContactLinks } from "@/components/contact/FooterContactLinks";
 import { amazonUrl } from "@/lib/site-data";
 
 const footerLinks = [
   { label: "The sponges", href: "#the-sponges" },
   { label: "Wholesale", href: "#who-its-for" },
-  { label: "Contact", href: "mailto:hello@choreclaridy.com" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export function Footer() {
@@ -32,11 +33,7 @@ export function Footer() {
               width={149.5}
             />
           </Link>
-          {footerLinks.map((link) => (
-            <Link key={link.label} href={link.href}>
-              {link.label}
-            </Link>
-          ))}
+          <FooterContactLinks links={footerLinks} />
         </div>
 
         <div className="footer-socials footer-socials--right" aria-label="Social links">
@@ -51,7 +48,12 @@ export function Footer() {
 
       <div className="shell footer-credits">
         <p>© 2026 Chore ClarIDy. All rights reserved.</p>
-        <p>Website design by Zora Digital</p>
+        <p>
+          Website design by{" "}
+          <Link href="https://www.zora.digital/" rel="noreferrer" target="_blank">
+            Zora Digital
+          </Link>
+        </p>
       </div>
     </footer>
   );

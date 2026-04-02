@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Poppins } from "next/font/google";
+
+import { CookieConsentBanner } from "@/components/layout/CookieConsentBanner";
 import "./globals.css";
 
 const inter = Inter({
@@ -39,6 +41,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} ${poppins.variable} ${inter.className}`}>
         {children}
+        <CookieConsentBanner />
       </body>
     </html>
   );
