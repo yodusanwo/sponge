@@ -148,9 +148,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section section--soft" id="why-better">
-        <div className="shell">
-          <div className="section-heading">
+      <section className="section section--soft section--comparison" id="why-better">
+        <div className="shell comparison-shell">
+          <div className="section-heading section-heading--comparison">
             <h2 className="heading-single-line-desktop">Not all sponges are the same</h2>
             <p>
               Here&apos;s what makes Chore ClarIDy a smarter clean.
@@ -217,8 +217,20 @@ export default function Home() {
           <div className="feature-grid">
             {featureHighlights.map((feature) => (
               <article className="feature-card" key={feature.title}>
-                <h3>{feature.title}</h3>
-                <p>{feature.description}</p>
+                <h3>
+                  {feature.title.split("\n").map((line, index) => (
+                    <span className="feature-card__title-line" key={`${feature.title}-${index}`}>
+                      {line}
+                    </span>
+                  ))}
+                </h3>
+                <p>
+                  {feature.description.split("\n").map((line, index) => (
+                    <span className="feature-card__body-line" key={`${feature.title}-body-${index}`}>
+                      {line}
+                    </span>
+                  ))}
+                </p>
               </article>
             ))}
           </div>
@@ -230,14 +242,16 @@ export default function Home() {
           <div className="cta-card__copy">
             <h2>Give every sponge a job</h2>
             <p>
-              Fast Amazon checkout. Quick delivery. Clean with confidence.
+              Fast Amazon checkout. Quick delivery.
+              <br />
+              Clean with confidence.
             </p>
             <Button href={amazonUrl}>Order Chore ClarIDy on Amazon</Button>
           </div>
           <div
             className="cta-card__visual"
             aria-hidden="true"
-            style={{ backgroundImage: `url(${figmaImages.cta})` }}
+            style={{ backgroundImage: "url('/Placeholder Image.png')" }}
           />
         </div>
       </section>

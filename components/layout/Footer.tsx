@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { amazonUrl } from "@/lib/site-data";
@@ -12,18 +13,24 @@ export function Footer() {
   return (
     <footer className="site-footer">
       <div className="shell footer-grid">
-        <div className="footer-brand">
-          <Link aria-label="Chore ClarIDy home" className="brand brand--footer" href="#top">
-            <span className="brand__chore">chore</span>
-            <span className="brand__claridy">
-              ClarIDy<span className="brand__mark">TM</span>
-            </span>
-          </Link>
-        </div>
+        <Link aria-label="Chore ClarIDy home" className="footer-logo" href="#top">
+          <Image
+            alt="Chore ClarIDy"
+            className="footer-logo__image"
+            height={114.5}
+            src="/Logo_TM 1.png"
+            width={192.493}
+          />
+        </Link>
 
-        <div className="footer-links">
+        <div className="footer-links footer-links--center">
           <Link className="footer-badge" href={amazonUrl} target="_blank" rel="noreferrer">
-            Shop Amazon
+            <Image
+              alt="Available at Amazon"
+              height={44.476}
+              src="/app-store-badge-amazon 1.png"
+              width={149.5}
+            />
           </Link>
           {footerLinks.map((link) => (
             <Link key={link.label} href={link.href}>
@@ -32,18 +39,19 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="footer-socials" aria-label="Social links">
+        <div className="footer-socials footer-socials--right" aria-label="Social links">
           <Link href="https://www.tiktok.com" rel="noreferrer" target="_blank">
-            TikTok
+            <Image alt="TikTok" height={21} src="/TikTok.svg" width={18} />
           </Link>
           <Link href="https://www.instagram.com" rel="noreferrer" target="_blank">
-            Instagram
+            <Image alt="Instagram" height={24} src="/Instagram.svg" width={24} />
           </Link>
         </div>
       </div>
 
       <div className="shell footer-credits">
         <p>© 2026 Chore ClarIDy. All rights reserved.</p>
+        <p>Website design by Zora Digital</p>
       </div>
     </footer>
   );

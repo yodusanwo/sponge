@@ -100,23 +100,24 @@ export const comparisonRows: ComparisonRow[] = [
 
 export const featureHighlights: Bullet[] = [
   {
-    title: "Busy family households",
-    description: "Everyone knows which sponge goes where. No arguments. No waste.",
+    title: "Busy family\nhouseholds",
+    description:
+      "Everyone knows which sponge\ngoes where. No mix-ups. No\narguments",
   },
   {
-    title: "Shared homes and roommates",
+    title: "Shared homes\nand roommates",
     description:
-      "No more wondering who used what on the toilet. Clarity ends the confusion.",
+      "No more wondering where this\nsponge has been. ClarIDy\nends the confusion.",
   },
   {
-    title: "Airbnb and short-term rentals",
+    title: "Airbnb and short-\nterm rentals",
     description:
-      "Guests understand the system instantly. Your home stays clean and organized.",
+      "Guests understand the system\ninstantly. Your home stays clean\nand organized.",
   },
   {
-    title: "Anyone who loves order",
+    title: "Anyone who\nloves order",
     description:
-      "A small change that makes your entire cleaning routine feel effortless and intentional.",
+      "A small change that makes your\nentire cleaning routine feel\neffortless and intentional.",
   },
 ];
 
