@@ -95,7 +95,7 @@ export default function Home() {
           <div
             className="split-image"
             aria-hidden="true"
-            style={{ backgroundImage: `url(${figmaImages.confusion})` }}
+            style={{ backgroundImage: "url('/Placeholder Image.jpg')" }}
           />
         </div>
       </section>
