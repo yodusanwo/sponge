@@ -1,7 +1,11 @@
 import type { Metadata, Viewport } from "next";
+import { GoogleTagManager } from "@next/third-parties/google";
 import { Inter, Poppins } from "next/font/google";
 
 import { CookieConsentBanner } from "@/components/layout/CookieConsentBanner";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { getHomePageJsonLd } from "@/lib/structured-data";
+import { gtmId, siteDescription, siteName, siteUrl } from "@/lib/site-data";
 import "./globals.css";
 
 const inter = Inter({
@@ -18,12 +22,51 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Chore ClarIDy",
-  description: "A clickable product prototype for the Chore ClarIDy sponge system.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: siteName,
+    template: `%s | ${siteName}`,
+  },
+  description: siteDescription,
+  keywords: [
+    "Chore ClarIDy",
+    "labeled sponges",
+    "cleaning sponges",
+    "kitchen sponges",
+    "household cleaning",
+  ],
+  authors: [{ name: siteName }],
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: "/ChloreID.svg",
     shortcut: "/ChloreID.svg",
     apple: "/ChloreID.svg",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteUrl,
+    siteName: siteName,
+    title: siteName,
+    description: siteDescription,
+    images: [
+      {
+        url: "/30.jpg",
+        alt: "Chore ClarIDy labeled cleaning sponges",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteName,
+    description: siteDescription,
+    images: ["/30.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -39,7 +82,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <GoogleTagManager gtmId={gtmId} />
       <body className={`${inter.variable} ${poppins.variable} ${inter.className}`}>
+        <noscript>
+          <iframe
+            height="0"
+            src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+            style={{ display: "none", visibility: "hidden" }}
+            title="Google Tag Manager"
+            width="0"
+          />
+        </noscript>
+        <JsonLd data={getHomePageJsonLd()} />
         {children}
         <CookieConsentBanner />
       </body>

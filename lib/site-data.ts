@@ -1,3 +1,14 @@
+/** Canonical production URL — update if the live domain changes. */
+export const siteUrl = "https://choreclaridy.com" as const;
+
+export const siteName = "Chore ClarIDy";
+
+export const siteDescription =
+  "Four clearly labeled cleaning sponges for dishes, kitchen counters, bathroom counters, and the toilet. No mix-ups. No second-guessing. Just clean. Available on Amazon.";
+
+/** Google Tag Manager container ID */
+export const gtmId = "GTM-P5JDHC29" as const;
+
 export type NavItem = {
   label: string;
   href: string;
