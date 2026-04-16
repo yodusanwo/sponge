@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     description: siteDescription,
     images: [
       {
-        url: "/30.jpg",
+        url: "/30.png",
         alt: "Chore ClarIDy labeled cleaning sponges",
       },
     ],
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteName,
     description: siteDescription,
-    images: ["/30.jpg"],
+    images: ["/30.png"],
   },
   robots: {
     index: true,
@@ -81,9 +81,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <GoogleTagManager gtmId={gtmId} />
-      <body className={`${inter.variable} ${poppins.variable} ${inter.className}`}>
+      <body
+        className={`${inter.variable} ${poppins.variable} ${inter.className}`}
+        suppressHydrationWarning
+      >
         <noscript>
           <iframe
             height="0"

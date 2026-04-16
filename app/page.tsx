@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/Button";
 import {
   amazonUrl,
   comparisonRows,
-  figmaImages,
   featureHighlights,
   heroBullets,
   spongeCards,
@@ -21,8 +20,8 @@ export default function Home() {
         <div className="hero-grid">
           <div className="hero-copy hero-copy--overlay">
             <h1>
-              Stop wondering where
-              <br />
+              Stop wondering where{' '}
+              <br aria-hidden="true" className="hero-title-break" />
               that sponge has been
             </h1>
             <p className="lead">
@@ -41,11 +40,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div
-            className="hero-photo"
-            aria-hidden="true"
-            style={{ backgroundImage: "linear-gradient(rgba(0,0,0,0.42), rgba(0,0,0,0.42)), url('/30.jpg')" }}
-          />
+          <div className="hero-photo" aria-hidden="true" />
         </div>
       </section>
 
@@ -93,9 +88,9 @@ export default function Home() {
           </div>
 
           <div
-            className="split-image"
+            className="split-image split-image--sink"
             aria-hidden="true"
-            style={{ backgroundImage: "url('/Placeholder Image.jpg')" }}
+            style={{ backgroundImage: "url('/Spongebysink.jpg')" }}
           />
         </div>
       </section>
@@ -128,7 +123,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="sponge-grid">
+          <div className="sponge-grid sponge-grid--four-areas">
             {spongeCards.map((card) => (
               <article className="sponge-card" key={card.title}>
                 <div
@@ -209,9 +204,9 @@ export default function Home() {
       <section className="section section--feature-audience">
         <div className="shell feature-layout">
           <div
-            className="feature-layout__visual"
+            className="feature-layout__visual feature-layout__visual--audience"
             aria-hidden="true"
-            style={{ backgroundImage: `url(${figmaImages.audience})` }}
+            style={{ backgroundImage: "url('/SpongeaboveToilet.png')" }}
           />
 
           <div className="feature-grid">
@@ -249,9 +244,8 @@ export default function Home() {
             <Button href={amazonUrl}>Order Chore ClarIDy on Amazon</Button>
           </div>
           <div
-            className="cta-card__visual"
+            className="cta-card__visual cta-card__visual--spongenbox"
             aria-hidden="true"
-            style={{ backgroundImage: "url('/Placeholder Image.png')" }}
           />
         </div>
       </section>

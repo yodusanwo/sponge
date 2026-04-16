@@ -37,10 +37,10 @@ export function Footer() {
         </div>
 
         <div className="footer-socials footer-socials--right" aria-label="Social links">
-          <Link href="https://www.tiktok.com" rel="noreferrer" target="_blank">
+          <Link href="https://www.tiktok.com/@choreclaridy" rel="noreferrer" target="_blank">
             <Image alt="TikTok" height={21} src="/TikTok.svg" width={18} />
           </Link>
-          <Link href="https://www.instagram.com" rel="noreferrer" target="_blank">
+          <Link href="https://www.instagram.com/@choreclaridy" rel="noreferrer" target="_blank">
             <Image alt="Instagram" height={24} src="/Instagram.svg" width={24} />
           </Link>
         </div>
@@ -48,12 +48,6 @@ export function Footer() {
 
       <div className="shell footer-credits">
         <p>© 2026 Chore ClarIDy. All rights reserved.</p>
-        <p>
-          Website design by{" "}
-          <Link href="https://www.zora.digital/" rel="noreferrer" target="_blank">
-            Zora Digital
-          </Link>
-        </p>
       </div>
     </footer>
   );

@@ -335,7 +335,7 @@ h3 {
   color: var(--Color-White, #fff);
   text-align: center;
   font-family: Inter, var(--font-body), sans-serif;
-  font-size: var(--Text-Sizes-Text-Medium, 1.25rem);
+  font-size: 20px;
   font-style: normal;
   font-weight: 400;
   line-height: 150%;
@@ -427,7 +427,6 @@ h3 {
   color: inherit;
 }
 
-.hero-photo,
 .feature-layout__visual,
 .cta-card__visual,
 .split-image {
@@ -445,6 +444,13 @@ h3 {
   inset: 0;
   min-height: 900px;
   border-radius: 0;
+  overflow: hidden;
+  background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.4) 0%,
+      rgba(0, 0, 0, 0.4) 100%
+    ),
+    url("/30.png") lightgray 50% / cover no-repeat;
 }
 
 .section-heading,
@@ -516,11 +522,21 @@ h3 {
   color: var(--Color-White, #fff);
   text-align: center;
   font-family: Poppins, var(--font-heading), sans-serif;
-  font-size: var(--Text-Sizes-Heading-1, 5.25rem);
+  font-size: 50px;
   font-style: normal;
   font-weight: 700;
   line-height: 110%;
-  letter-spacing: -0.0525rem;
+  letter-spacing: -0.5px;
+}
+
+@media (min-width: 901px) {
+  .hero-copy--overlay h1 {
+    white-space: nowrap;
+  }
+
+  .hero-title-break {
+    display: none;
+  }
 }
 
 .hero-copy--overlay .hero-actions {
@@ -549,7 +565,15 @@ h3 {
 }
 
 .split-image {
-  aspect-ratio: 600 / 640;
+  aspect-ratio: 15 / 16;
+}
+
+/* “How it works” hero image — Figma: cover, 8px radius, ~648px tall column */
+.split-image.split-image--sink {
+  min-height: 648px;
+  align-self: stretch;
+  width: 100%;
+  background-color: #d3d3d3;
 }
 
 .brand-panel-shell {
@@ -582,7 +606,15 @@ h3 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+/* Row of four columns: fixed art tile, then title + body (matches Figma). */
+.sponge-grid--four-areas {
+  align-items: start;
+}
+
 .sponge-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   overflow: hidden;
   padding: 1rem 1rem 1.5rem;
   cursor: pointer;
@@ -594,18 +626,29 @@ h3 {
 }
 
 .sponge-card__art {
+  flex-shrink: 0;
+  width: 300px;
+  max-width: 100%;
   aspect-ratio: 1 / 1;
+  height: auto;
   margin: 0 auto 1.5rem;
-  width: min(100%, 300px);
   border-radius: 8px;
+  background-color: #fff;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 }
 
 .sponge-card__copy {
+  width: 100%;
+  max-width: 300px;
   padding: 0;
   text-align: center;
+}
+
+/* Stack: art → title → body; no extra gap above title (Figma column layout). */
+.sponge-card__copy h3 {
+  margin-top: 0;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -674,6 +717,16 @@ h3 {
   min-height: 543px;
 }
 
+/* Figma: audience block image 509×543, cover, 8px radius (base .feature-layout__visual) */
+.feature-layout__visual--audience {
+  aspect-ratio: 509 / 543;
+  min-height: 0;
+  width: 100%;
+  max-width: 509px;
+  justify-self: start;
+  background-color: #d3d3d3;
+}
+
 .feature-grid,
 .audience-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -687,6 +740,7 @@ h3 {
 
 .cta-card {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
   padding: 0;
   overflow: hidden;
   background: transparent;
@@ -710,6 +764,18 @@ h3 {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+/* “Give every sponge a job” — product fits the column; no offset crop */
+.cta-card__visual.cta-card__visual--spongenbox {
+  align-self: stretch;
+  min-height: 25.1875rem;
+  border-radius: 0;
+  background-color: var(--blue-100);
+  background-image: url("/Spongenbox.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .site-footer {
@@ -832,6 +898,10 @@ h3 {
     min-height: 420px;
   }
 
+  .split-image.split-image--sink {
+    min-height: 420px;
+  }
+
   .brand-panel-card {
     height: auto;
   }
@@ -844,6 +914,12 @@ h3 {
   .hero-photo,
   .hero-grid {
     min-height: 720px;
+  }
+
+  /* Two-column sponge cards: equal title block height so descriptions line up */
+  .sponge-grid--four-areas .sponge-card__copy h3 {
+    line-height: 1.35;
+    min-height: calc(2 * 1.35em);
   }
 }
 
@@ -1040,12 +1116,12 @@ h3 {
 
   .comparison-card h3 {
     padding: 0.875rem 1rem 0;
-    text-align: left;
+    text-align: center;
   }
 
   .comparison-card__section {
     padding: 0.85rem 1rem 1rem;
-    text-align: left;
+    text-align: center;
   }
 
   .comparison-card__section--highlight {
@@ -1063,6 +1139,14 @@ h3 {
   .feature-layout__visual,
   .cta-card__visual,
   .split-image {
+    min-height: 300px;
+  }
+
+  .cta-card__visual.cta-card__visual--spongenbox {
+    min-height: 220px;
+  }
+
+  .split-image.split-image--sink {
     min-height: 300px;
   }
 
@@ -1095,16 +1179,16 @@ h3 {
   }
 
   .hero-copy--overlay h1 {
-    font-size: clamp(2.35rem, 10vw, 3.2rem);
-    line-height: 1.02;
-    letter-spacing: -0.04rem;
+    font-size: clamp(1.75rem, 6vw, 50px);
+    line-height: 110%;
+    letter-spacing: -0.5px;
   }
 
   .lead {
     width: 100%;
     max-width: 19.5rem;
     margin-top: 1rem;
-    font-size: 0.95rem;
+    font-size: 20px;
     line-height: 1.6;
   }
 
@@ -1131,23 +1215,29 @@ h3 {
   .section-heading--wide,
   .section-heading--left {
     margin-bottom: 1.5rem;
-    text-align: left;
+    text-align: center;
   }
 
   .section-heading p,
   .sponge-card__copy,
   .feature-card,
   .cta-card__copy {
-    text-align: left;
+    text-align: center;
   }
 
   .story-bullets {
     gap: 0.875rem;
   }
 
+  .story-bullets .bullet-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .bullet-card h3,
   .bullet-card p {
-    text-align: left;
+    text-align: center;
   }
 
   .split-section,
@@ -1162,8 +1252,8 @@ h3 {
   }
 
   .sponge-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.875rem;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.65rem;
   }
 
   .sponge-card {
@@ -1175,6 +1265,11 @@ h3 {
     margin-bottom: 1rem;
   }
 
+  /* Single column: no need for fixed two-line title height */
+  .sponge-grid--four-areas .sponge-card__copy h3 {
+    min-height: unset;
+  }
+
   .sponge-card__copy h3 {
     margin-top: 0;
     font-size: 1.1rem;
@@ -1182,6 +1277,42 @@ h3 {
 
   .sponge-card__copy p {
     font-size: 0.95rem;
+    line-height: 1.45;
+  }
+
+  /*
+   * “4 sponges” mobile: row layout (thumb + copy) — less vertical scroll,
+   * faster scanning than full-width stacked tiles.
+   */
+  #the-sponges .sponge-grid--four-areas .sponge-card {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0.875rem;
+    padding: 0.75rem 0.9rem 0.9rem;
+  }
+
+  #the-sponges .sponge-grid--four-areas .sponge-card__art {
+    width: 7rem;
+    min-width: 7rem;
+    max-width: 30vw;
+    margin: 0;
+  }
+
+  #the-sponges .sponge-grid--four-areas .sponge-card__copy {
+    flex: 1;
+    min-width: 0;
+    max-width: none;
+    text-align: center;
+  }
+
+  #the-sponges .sponge-grid--four-areas .sponge-card__copy h3 {
+    font-size: 1.05rem;
+    line-height: 1.3;
+  }
+
+  #the-sponges .sponge-grid--four-areas .sponge-card__copy p {
+    margin-top: 0.35rem;
+    font-size: 0.875rem;
     line-height: 1.45;
   }
 
@@ -1222,14 +1353,28 @@ h3 {
 
   .footer-grid {
     grid-template-columns: 1fr;
-    justify-items: start;
+    justify-items: center;
     gap: 1.25rem;
     padding-bottom: 1.5rem;
   }
 
+  /* Logo below social row: links → socials → logo */
+  .footer-grid .footer-links--center {
+    order: 1;
+  }
+
+  .footer-grid .footer-socials--right {
+    order: 2;
+  }
+
+  .footer-grid .footer-logo {
+    order: 3;
+    justify-content: center;
+  }
+
   .footer-links--center,
   .footer-socials--right {
-    justify-content: flex-start;
+    justify-content: center;
   }
 
   .footer-logo__image {
@@ -1239,11 +1384,12 @@ h3 {
 
   .footer-links {
     gap: 1rem 1.25rem;
+    justify-content: center;
   }
 
   .footer-links--center {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
   }
 
   .footer-links--center a:not(.footer-badge) {
@@ -1258,8 +1404,8 @@ h3 {
   .footer-links,
   .footer-socials,
   .footer-credits {
-    justify-content: flex-start;
-    text-align: left;
+    justify-content: center;
+    text-align: center;
   }
 
   .footer-socials--right {

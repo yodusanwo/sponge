@@ -8,6 +8,7 @@ import {
   useRef,
   useState,
   type FormEvent,
+  type MouseEvent,
 } from "react";
 
 import { contactEmail } from "@/lib/site-data";
@@ -17,6 +18,9 @@ type FooterLink = { label: string; href: string };
 type Props = {
   links: FooterLink[];
 };
+
+/** Footer labels that open the shared contact modal instead of navigating. */
+const CONTACT_MODAL_LABELS = new Set(["Contact", "Wholesale"]);
 
 export function FooterContactLinks({ links }: Props) {
   const [open, setOpen] = useState(false);
@@ -45,6 +49,10 @@ export function FooterContactLinks({ links }: Props) {
     };
   }, [open, close]);
 
+  const handleBackdropClick = (e: MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) close();
+  };
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
@@ -64,7 +72,7 @@ export function FooterContactLinks({ links }: Props) {
   return (
     <>
       {links.map((link) =>
-        link.label === "Contact" ? (
+        CONTACT_MODAL_LABELS.has(link.label) ? (
           <button
             key={link.label}
             className="footer-contact-trigger"
@@ -81,12 +89,15 @@ export function FooterContactLinks({ links }: Props) {
       )}
 
       {open ? (
-        <div className="contact-modal-backdrop" onClick={close} role="presentation">
+        <div
+          className="contact-modal-backdrop"
+          onClick={handleBackdropClick}
+          role="presentation"
+        >
           <div
             aria-labelledby={titleId}
             aria-modal="true"
             className="contact-modal"
-            onClick={(e) => e.stopPropagation()}
             role="dialog"
           >
             <button

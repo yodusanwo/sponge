@@ -58,26 +58,29 @@ export const spongeCards: SpongeCard[] = [
     title: "Dishes",
     description:
       "Cuts through grease and grime without scratching delicate surfaces.",
-    imageUrl: "https://www.figma.com/api/mcp/asset/4b9257e1-29d7-4800-8631-f4307d4fab24",
-    rotation: "-1deg",
+    imageUrl: "/Dishes.png",
+    rotation: "-0.437deg",
   },
   {
     title: "Kitchen counter",
     description:
       "Handles spills, crumbs, and everyday messes with precision and care.",
-    imageUrl: "https://www.figma.com/api/mcp/asset/e692250b-884c-44ed-bbe3-c93a4adf92b6",
+    imageUrl: "/KitchenSponge.png",
+    rotation: "-0.437deg",
   },
   {
     title: "Bathroom counter",
     description:
       "Gentle enough for mirrors and fixtures, tough on soap scum and toothpaste.",
-    imageUrl: "https://www.figma.com/api/mcp/asset/f5e40c6c-de27-4c41-9775-ad4057b69077",
+    imageUrl: "/Bathroom.png",
+    rotation: "-0.437deg",
   },
   {
     title: "Toilet",
     description:
       "Built for the job it was made for. Never touches anything else.",
-    imageUrl: "https://www.figma.com/api/mcp/asset/e2246230-ab91-49b7-a281-62f34b98e3da",
+    imageUrl: "/ToiletSponge.png",
+    rotation: "-0.437deg",
   },
 ];
 
@@ -85,7 +88,7 @@ export const comparisonRows: ComparisonRow[] = [
   {
     feature: "Identification",
     regularSponges: "All look the same — mix-ups are easy",
-    choreClaridy: "Clear label + icon on every sponge",
+    choreClaridy: "Clear label & icon on every sponge",
   },
   {
     feature: "Cleaning system",
