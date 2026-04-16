@@ -11,6 +11,20 @@ import {
   wholesaleBullets,
 } from "@/lib/site-data";
 
+/** Line break after “touches” only when `.sponge-desc-br--ipad-only` is shown (tablet / iPad widths). */
+function SpongeCardDescription({ description, title }: { description: string; title: string }) {
+  if (title !== "Toilet") return <>{description}</>;
+  const breakAt = description.indexOf(" anything else.");
+  if (breakAt === -1) return <>{description}</>;
+  return (
+    <>
+      {description.slice(0, breakAt)}
+      <br aria-hidden="true" className="sponge-desc-br--ipad-only" />
+      {description.slice(breakAt).trimStart()}
+    </>
+  );
+}
+
 export default function Home() {
   return (
     <main id="top">
@@ -19,15 +33,10 @@ export default function Home() {
       <section className="hero section">
         <div className="hero-grid">
           <div className="hero-copy hero-copy--overlay">
-            <h1>
-              Stop wondering where{' '}
-              <br aria-hidden="true" className="hero-title-break" />
-              that sponge has been
-            </h1>
+            <h1>Stop wondering where that sponge has been</h1>
             <p className="lead">
-              4 clearly labeled sponges — one for dishes, kitchen counters,
-              bathroom counters, and the toilet. No mix-ups. No second-guessing.
-              Just clean.
+              4 clearly labeled sponges — one for dishes, kitchen counters, bathroom
+              counters, and the toilet. No mix-ups. No second-guessing. Just clean.
             </p>
 
             <div className="hero-actions">
@@ -135,7 +144,9 @@ export default function Home() {
                 />
                 <div className="sponge-card__copy">
                   <h3>{card.title}</h3>
-                  <p>{card.description}</p>
+                  <p>
+                    <SpongeCardDescription description={card.description} title={card.title} />
+                  </p>
                 </div>
               </article>
             ))}
@@ -212,7 +223,13 @@ export default function Home() {
           <div className="feature-grid">
             {featureHighlights.map((feature) => (
               <article className="feature-card" key={feature.title}>
-                <h3>
+                <h3
+                  className={
+                    feature.title.includes("\n")
+                      ? "feature-card__title--stack-tablet"
+                      : undefined
+                  }
+                >
                   {feature.title.split("\n").map((line, index) => (
                     <span className="feature-card__title-line" key={`${feature.title}-${index}`}>
                       {line}
@@ -235,7 +252,7 @@ export default function Home() {
       <section className="section section--cta">
         <div className="shell cta-card">
           <div className="cta-card__copy">
-            <h2>Give every sponge a job</h2>
+            <h2>Give every sponge a{"\u00A0"}job</h2>
             <p>
               Fast Amazon checkout. Quick delivery.
               <br />

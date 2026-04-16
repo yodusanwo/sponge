@@ -43,8 +43,9 @@ main {
   padding-top: 8.25rem;
 }
 
+/* Wider side inset on desktop / large tablets (e.g. Nest Hub Max ~1280px) — was 16px/side */
 .shell {
-  width: min(1280px, calc(100% - 32px));
+  width: min(1280px, calc(100% - 4rem));
   margin: 0 auto;
 }
 
@@ -529,13 +530,29 @@ h3 {
   letter-spacing: -0.5px;
 }
 
-@media (min-width: 901px) {
+/*
+ * Single-line hero title only when there’s room — at iPad Pro (~1024px) nowrap
+ * overflows and clips (main has overflow-x: hidden). Wrap between ~901–1199px.
+ */
+@media (min-width: 1200px) {
   .hero-copy--overlay h1 {
     white-space: nowrap;
   }
+}
 
-  .hero-title-break {
-    display: none;
+/* Large tablet / small laptop: readable wrap + slightly smaller headline */
+@media (min-width: 901px) and (max-width: 1199px) {
+  .hero-copy--overlay h1 {
+    white-space: normal;
+    max-width: 100%;
+    font-size: clamp(1.85rem, 3.6vw, 2.75rem);
+    line-height: 1.12;
+  }
+
+  .hero-copy--overlay .button {
+    padding: 0.55rem 1rem;
+    border-radius: 5px;
+    font-size: 1rem;
   }
 }
 
@@ -564,15 +581,36 @@ h3 {
   margin: 0;
 }
 
+.story-bullets .bullet-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Toilet copy: line break after “touches” only on tablet / iPad widths */
+.sponge-desc-br--ipad-only {
+  display: none;
+}
+
+@media (min-width: 900px) and (max-width: 1366px) {
+  .sponge-desc-br--ipad-only {
+    display: block;
+  }
+}
+
 .split-image {
   aspect-ratio: 15 / 16;
 }
 
-/* “How it works” hero image — Figma: cover, 8px radius, ~648px tall column */
+/* “How it works” sink photo — ~56% of full column (two −25% steps); video unchanged */
 .split-image.split-image--sink {
-  min-height: 648px;
-  align-self: stretch;
-  width: 100%;
+  min-height: 364.5px; /* 648px × 0.75² */
+  align-self: center;
+  width: 56.25%;
+  max-width: 56.25%;
+  margin-left: auto;
+  margin-right: auto;
   background-color: #d3d3d3;
 }
 
@@ -899,7 +937,7 @@ h3 {
   }
 
   .split-image.split-image--sink {
-    min-height: 420px;
+    min-height: 236.25px; /* 420px × 0.75² */
   }
 
   .brand-panel-card {
@@ -923,11 +961,87 @@ h3 {
   }
 }
 
+/* iPad Pro / compact desktop header: more room between logo, nav, and CTA */
+@media (min-width: 901px) and (max-width: 1100px) {
+  .navbar {
+    gap: 1rem;
+  }
+
+  .nav-links {
+    gap: 0.85rem;
+    font-size: 0.875rem;
+  }
+
+  .nav-cta .button {
+    padding: 0.5rem 0.95rem;
+    font-size: 0.9375rem;
+  }
+
+  /*
+   * Single-column split (see max-width: 1100px): copy column was still left-aligned.
+   * Center heading, comparison cards, and CTA for tablet / iPad Pro widths.
+   */
+  #how-it-works .section-heading--left {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: min(40rem, 100%);
+    text-align: center;
+  }
+
+  #how-it-works .section-heading--left p {
+    text-align: center;
+  }
+
+  #how-it-works .story-bullets--left {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: min(38rem, 100%);
+  }
+
+  #how-it-works .split-copy .hero-actions {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  #how-it-works .split-copy .hero-actions .button {
+    width: auto;
+    padding: 0.55rem 1rem;
+    border-radius: 5px;
+  }
+
+  /* Audience 2×2 + “Give every sponge a job” — centered when layout stacks (iPad Pro) */
+  .section--feature-audience .feature-card,
+  .section--feature-audience .feature-card h3 {
+    text-align: center;
+  }
+
+  .section--cta .cta-card__copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .section--cta .cta-card__copy p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section--cta .cta-card__copy .button {
+    width: auto;
+    padding: 0.55rem 1rem;
+    border-radius: 5px;
+  }
+}
+
 @media (max-width: 900px) {
   :root {
     --mobile-section-space: 2.5rem;
     --mobile-stack-space: 1.5rem;
     --mobile-card-space: 1rem;
+    /* Side inset for shell, hero, etc. (was 12px each; now 20px each) */
+    --mobile-inline-gutter: 1.25rem;
   }
 
   main {
@@ -961,7 +1075,7 @@ h3 {
   }
 
   .shell {
-    width: min(1280px, calc(100% - 24px));
+    width: min(1280px, calc(100% - 2 * var(--mobile-inline-gutter)));
   }
 
   h1 {
@@ -1147,7 +1261,7 @@ h3 {
   }
 
   .split-image.split-image--sink {
-    min-height: 300px;
+    min-height: 168.75px; /* 300px × 0.75² */
   }
 
   .section--brand-panel {
@@ -1171,7 +1285,7 @@ h3 {
   }
 
   .hero-copy--overlay {
-    width: calc(100% - 24px);
+    width: calc(100% - 2 * var(--mobile-inline-gutter));
     max-width: 22rem;
     justify-content: center;
     padding: 5.5rem 0 2.25rem;
@@ -1229,17 +1343,6 @@ h3 {
     gap: 0.875rem;
   }
 
-  .story-bullets .bullet-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .bullet-card h3,
-  .bullet-card p {
-    text-align: center;
-  }
-
   .split-section,
   .feature-layout,
   .cta-card {
@@ -1286,15 +1389,15 @@ h3 {
    */
   #the-sponges .sponge-grid--four-areas .sponge-card {
     flex-direction: row;
-    align-items: flex-start;
-    gap: 0.875rem;
+    align-items: center;
+    gap: 0.75rem;
     padding: 0.75rem 0.9rem 0.9rem;
   }
 
   #the-sponges .sponge-grid--four-areas .sponge-card__art {
-    width: 7rem;
-    min-width: 7rem;
-    max-width: 30vw;
+    width: 9rem;
+    min-width: 9rem;
+    max-width: 46vw;
     margin: 0;
   }
 
@@ -1414,6 +1517,114 @@ h3 {
 
   .footer-credits {
     padding-top: 1.5rem;
+  }
+}
+
+/* iPad Mini / small tablet: titles +50%; body +50% then −25% vs base (0.875rem → 0.984375rem) */
+@media (min-width: 768px) and (max-width: 900px) {
+  #the-sponges .sponge-grid--four-areas .sponge-card__copy h3 {
+    font-size: 1.575rem; /* 1.05rem × 1.5 */
+    line-height: 1.25;
+  }
+
+  #the-sponges .sponge-grid--four-areas .sponge-card__copy p {
+    font-size: 0.984375rem; /* 1.3125rem × 0.75 */
+    line-height: 1.5;
+  }
+
+  .hero-copy--overlay {
+    max-width: min(40rem, calc(100% - 2 * var(--mobile-inline-gutter)));
+  }
+
+  .hero-copy--overlay .lead {
+    max-width: min(36rem, 100%);
+  }
+
+  /* Footer: same row as desktop — logo, nav links, socials */
+  .footer-grid {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    justify-items: stretch;
+    align-items: center;
+    gap: 1rem 1.5rem;
+    padding-bottom: 2rem;
+  }
+
+  .footer-grid .footer-logo,
+  .footer-grid .footer-links--center,
+  .footer-grid .footer-socials--right {
+    order: 0;
+  }
+
+  .footer-logo {
+    justify-self: start;
+  }
+
+  .footer-links--center {
+    justify-self: center;
+    justify-content: center;
+  }
+
+  .footer-socials--right {
+    justify-self: end;
+  }
+
+  /* Primary CTAs hug text on tablet; phones stay full-width (see max-width: 900px rules) */
+  .hero-actions {
+    align-items: center;
+  }
+
+  .hero-actions .button--primary {
+    min-height: 0;
+    padding: 0.5rem 0.875rem;
+    border-radius: 5px;
+  }
+
+  .cta-card__copy .button {
+    width: auto;
+    min-height: 0;
+    padding: 0.5rem 0.875rem;
+    border-radius: 5px;
+  }
+}
+
+/* Tablet (incl. iPad Mini landscape): audience copy flows naturally; center hero image */
+@media (min-width: 768px) and (max-width: 1100px) {
+  .section--feature-audience .feature-card__title-line,
+  .section--feature-audience .feature-card__body-line {
+    display: inline;
+    white-space: normal;
+  }
+
+  .section--feature-audience .feature-card__title-line + .feature-card__title-line::before,
+  .section--feature-audience .feature-card__body-line + .feature-card__body-line::before {
+    content: " ";
+  }
+
+  /*
+   * Multi-line audience titles (e.g. “Busy family” / “households”, “Anyone who loves” / “order”):
+   * inline title rule collapses them to one line — stack with flex (tablet / iPad Pro band).
+   */
+  .section--feature-audience .feature-card__title--stack-tablet {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .section--feature-audience .feature-card__title--stack-tablet .feature-card__title-line {
+    display: block;
+  }
+
+  /* No leading space on wrapped title lines — general rule adds ::before between adjacent spans */
+  .section--feature-audience
+    .feature-card__title--stack-tablet
+    .feature-card__title-line
+    + .feature-card__title-line::before {
+    content: none;
+  }
+
+  .section--feature-audience .feature-layout__visual--audience {
+    justify-self: center;
+    margin-inline: auto;
   }
 }
 

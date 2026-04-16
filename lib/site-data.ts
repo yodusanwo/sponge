@@ -129,7 +129,7 @@ export const featureHighlights: Bullet[] = [
       "Guests understand the system\ninstantly. Your home stays clean\nand organized.",
   },
   {
-    title: "Anyone who\nloves order",
+    title: "Anyone who loves\norder",
     description:
       "A small change that makes your\nentire cleaning routine feel\neffortless and intentional.",
   },
