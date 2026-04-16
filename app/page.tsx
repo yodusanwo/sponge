@@ -40,7 +40,7 @@ export default function Home() {
             </p>
 
             <div className="hero-actions">
-              <Button href={amazonUrl}>
+              <Button ctaLocation="hero" href={amazonUrl}>
                 Get Chore ClarIDy on Amazon
               </Button>
               <Button href="#how-it-works" variant="secondary">
@@ -72,7 +72,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="story-bullets story-bullets--left">
+            <div className="story-bullets story-bullets--comparison-grid">
               {heroBullets.map((item) => (
                 <article className="bullet-card bullet-card--wide" key={item.title}>
                   <span
@@ -89,10 +89,11 @@ export default function Home() {
                   <p>{item.description}</p>
                 </article>
               ))}
-            </div>
-
-            <div className="hero-actions">
-              <Button href={amazonUrl}>Get Chore ClarIDy on Amazon</Button>
+              <div className="story-bullets__amazon hero-actions">
+                <Button ctaLocation="how_it_works" href={amazonUrl}>
+                  Get Chore ClarIDy on Amazon
+                </Button>
+              </div>
             </div>
           </div>
 
@@ -258,7 +259,9 @@ export default function Home() {
               <br />
               Clean with confidence.
             </p>
-            <Button href={amazonUrl}>Order Chore ClarIDy on Amazon</Button>
+            <Button ctaLocation="cta_bottom" href={amazonUrl}>
+              Order Chore ClarIDy on Amazon
+            </Button>
           </div>
           <div
             className="cta-card__visual cta-card__visual--spongenbox"

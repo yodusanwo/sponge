@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { TrackedAmazonBadgeLink } from "@/components/analytics/TrackedAmazonLink";
 import { FooterContactLinks } from "@/components/contact/FooterContactLinks";
 import { amazonUrl } from "@/lib/site-data";
 
@@ -25,14 +26,7 @@ export function Footer() {
         </Link>
 
         <div className="footer-links footer-links--center">
-          <Link className="footer-badge" href={amazonUrl} target="_blank" rel="noreferrer">
-            <Image
-              alt="Available at Amazon"
-              height={44.476}
-              src="/app-store-badge-amazon 1.png"
-              width={149.5}
-            />
-          </Link>
+          <TrackedAmazonBadgeLink className="footer-badge" href={amazonUrl} />
           <FooterContactLinks links={footerLinks} />
         </div>
 

@@ -581,6 +581,47 @@ h3 {
   margin: 0;
 }
 
+/*
+ * “How it works”: Confusion | ClarIDy on row 1; Amazon CTA row 2 under left column (Figma desktop).
+ */
+.story-bullets.story-bullets--comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: auto auto;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.story-bullets.story-bullets--comparison-grid .bullet-card:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.story-bullets.story-bullets--comparison-grid .bullet-card:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.story-bullets.story-bullets--comparison-grid .story-bullets__amazon {
+  grid-column: 1;
+  grid-row: 2;
+  justify-self: start;
+  width: auto;
+  margin-top: 0;
+}
+
+@media (min-width: 1101px) {
+  #how-it-works .story-bullets--comparison-grid .bullet-card {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  #how-it-works .story-bullets--comparison-grid .bullet-card h3,
+  #how-it-works .story-bullets--comparison-grid .bullet-card p {
+    text-align: left;
+  }
+}
+
 .story-bullets .bullet-card {
   display: flex;
   flex-direction: column;
@@ -603,14 +644,16 @@ h3 {
   aspect-ratio: 15 / 16;
 }
 
-/* “How it works” sink photo — ~56% of full column (two −25% steps); video unchanged */
+/*
+ * “How it works” sink — Figma: fill the grid column, ~648px min height, 15/16 (see .split-image).
+ * Narrow layouts: scaled + centered (see max-width: 1100px).
+ */
 .split-image.split-image--sink {
-  min-height: 364.5px; /* 648px × 0.75² */
-  align-self: center;
-  width: 56.25%;
-  max-width: 56.25%;
-  margin-left: auto;
-  margin-right: auto;
+  min-height: 648px;
+  align-self: stretch;
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
   background-color: #d3d3d3;
 }
 
@@ -936,8 +979,13 @@ h3 {
     min-height: 420px;
   }
 
+  /* Stacked “How it works”: smaller, centered image (was requested vs full Figma column) */
   .split-image.split-image--sink {
-    min-height: 236.25px; /* 420px × 0.75² */
+    min-height: 236.25px; /* 420px column min × 0.75² */
+    align-self: center;
+    width: 56.25%;
+    max-width: 56.25%;
+    margin-inline: auto;
   }
 
   .brand-panel-card {
@@ -992,19 +1040,19 @@ h3 {
     text-align: center;
   }
 
-  #how-it-works .story-bullets--left {
+  #how-it-works .story-bullets--comparison-grid {
     margin-left: auto;
     margin-right: auto;
     max-width: min(38rem, 100%);
   }
 
-  #how-it-works .split-copy .hero-actions {
+  #how-it-works .story-bullets__amazon {
     display: flex;
     justify-content: center;
     width: 100%;
   }
 
-  #how-it-works .split-copy .hero-actions .button {
+  #how-it-works .story-bullets__amazon .button {
     width: auto;
     padding: 0.55rem 1rem;
     border-radius: 5px;
@@ -1341,6 +1389,28 @@ h3 {
 
   .story-bullets {
     gap: 0.875rem;
+  }
+
+  /* Confusion → ClarIDy → Amazon (same order as before the grid refactor) */
+  .story-bullets.story-bullets--comparison-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, auto);
+  }
+
+  .story-bullets.story-bullets--comparison-grid .bullet-card:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .story-bullets.story-bullets--comparison-grid .bullet-card:nth-child(2) {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .story-bullets.story-bullets--comparison-grid .story-bullets__amazon {
+    grid-column: 1;
+    grid-row: 3;
+    justify-self: stretch;
   }
 
   .split-section,

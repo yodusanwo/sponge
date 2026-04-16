@@ -32,7 +32,9 @@ export function Navbar() {
         </nav>
 
         <div className="nav-cta">
-          <Button href={amazonUrl}>Buy on Amazon</Button>
+          <Button ctaLocation="nav_desktop" href={amazonUrl}>
+            Buy on Amazon
+          </Button>
         </div>
 
         <details className="mobile-menu">
@@ -48,7 +50,9 @@ export function Navbar() {
                   {item.label}
                 </Link>
               ))}
-              <Button href={amazonUrl}>Buy on Amazon</Button>
+              <Button ctaLocation="nav_mobile" href={amazonUrl}>
+                Buy on Amazon
+              </Button>
             </nav>
           </div>
         </details>
