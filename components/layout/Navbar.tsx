@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { DesktopNavLinks } from "@/components/layout/DesktopNavLinks";
+import { MobileMenuLinks } from "@/components/layout/MobileMenuLinks";
 import { amazonUrl, navItems } from "@/lib/site-data";
 import { Button } from "@/components/ui/Button";
 
@@ -17,18 +19,13 @@ export function Navbar() {
             alt="Chore ClarIDy"
             className="brand__logo"
             height={104}
-            priority
             src="/Logo_TM 1.png"
             width={175}
           />
         </Link>
 
         <nav aria-label="Primary" className="nav-links">
-          {navItems.map((item) => (
-            <Link key={item.href} href={item.href}>
-              {item.label}
-            </Link>
-          ))}
+          <DesktopNavLinks items={navItems} />
         </nav>
 
         <div className="nav-cta">
@@ -45,11 +42,7 @@ export function Navbar() {
           </summary>
           <div className="mobile-menu__panel">
             <nav aria-label="Mobile navigation" className="mobile-menu__links">
-              {navItems.map((item) => (
-                <Link key={item.href} href={item.href}>
-                  {item.label}
-                </Link>
-              ))}
+              <MobileMenuLinks items={navItems} />
               <Button ctaLocation="nav_mobile" href={amazonUrl}>
                 Buy on Amazon
               </Button>

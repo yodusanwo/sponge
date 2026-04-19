@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { HeroBackdrop } from "@/components/hero/HeroBackdrop";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { Button } from "@/components/ui/Button";
@@ -49,7 +50,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="hero-photo" aria-hidden="true" />
+          <HeroBackdrop />
         </div>
       </section>
 

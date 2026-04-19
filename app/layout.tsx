@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     description: siteDescription,
     images: [
       {
-        url: "/30.png",
+        url: "/30compressed.png",
         alt: "Chore ClarIDy labeled cleaning sponges",
       },
     ],
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteName,
     description: siteDescription,
-    images: ["/30.png"],
+    images: ["/30compressed.png"],
   },
   robots: {
     index: true,

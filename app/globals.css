@@ -21,6 +21,15 @@ html {
   scroll-behavior: smooth;
 }
 
+/*
+ * Fragment links (#how-it-works, #why-better, …) scroll the target element to the
+ * top of the viewport by default, which sits *under* the fixed header. Match
+ * main’s padding-top so the section’s top (and its padding) clears the nav.
+ */
+section[id] {
+  scroll-margin-top: 8.25rem;
+}
+
 body {
   margin: 0;
   background: var(--background);
@@ -127,7 +136,18 @@ main {
 .footer-socials a {
   transition:
     color 160ms ease,
-    opacity 160ms ease;
+    opacity 160ms ease,
+    border-color 160ms ease;
+}
+
+.nav-links a.nav-links__link {
+  border-bottom: 2px solid transparent;
+  padding-bottom: 0.15em;
+}
+
+.nav-links a.nav-links__link--active {
+  border-bottom-color: var(--blue-700);
+  color: var(--blue-700);
 }
 
 .nav-cta {
@@ -154,7 +174,8 @@ main {
   display: none;
 }
 
-.nav-links a:hover,
+.nav-links a.nav-links__link:hover,
+.nav-links a.nav-links__link:focus-visible,
 .footer-links a:hover,
 .footer-socials a:hover {
   color: var(--blue-700);
@@ -245,6 +266,8 @@ main {
 .hero.section {
   padding-top: 0;
   padding-bottom: 0;
+  /* Dominant-tone placeholder so the block paints before the hero image decodes */
+  background-color: #5a5558;
 }
 
 .hero-grid,
@@ -443,15 +466,28 @@ h3 {
 .hero-photo {
   position: absolute;
   inset: 0;
+  z-index: 0;
   min-height: 900px;
   border-radius: 0;
   overflow: hidden;
+  background-color: #5a5558;
+}
+
+.hero-photo__img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero-photo__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
   background: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 0.4) 0%,
-      rgba(0, 0, 0, 0.4) 100%
-    ),
-    url("/30.png") lightgray 50% / cover no-repeat;
+    0deg,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
 }
 
 .section-heading,
@@ -1096,6 +1132,10 @@ h3 {
     padding-top: 5rem;
   }
 
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+
   .section {
     padding: var(--mobile-section-space) 0;
   }
@@ -1221,13 +1261,23 @@ h3 {
     gap: 0.4rem;
   }
 
-  .mobile-menu__links a {
+  .mobile-menu__links a.mobile-menu__link {
     padding: 0.9rem 0.95rem;
     border-radius: 0.75rem;
+    border-bottom: 2px solid transparent;
     color: var(--Color-Scheme-2-Text, #070309);
     font-family: Inter, var(--font-body), sans-serif;
     font-size: 1rem;
     line-height: 1.5;
+  }
+
+  .mobile-menu__links a.mobile-menu__link--active {
+    border-bottom-color: var(--blue-700);
+  }
+
+  .mobile-menu__links a.mobile-menu__link:hover,
+  .mobile-menu__links a.mobile-menu__link:focus-visible {
+    color: var(--blue-700);
   }
 
   .mobile-menu__links .button {

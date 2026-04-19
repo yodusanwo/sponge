@@ -56,7 +56,7 @@ export function getHomePageJsonLd() {
           "@type": "Brand",
           name: siteName,
         },
-        image: `${siteUrl}/30.png`,
+        image: `${siteUrl}/30compressed.png`,
         offers: {
           "@type": "Offer",
           url: amazonUrl,
