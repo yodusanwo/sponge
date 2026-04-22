@@ -3,8 +3,8 @@ import { HeroBackdrop } from "@/components/hero/HeroBackdrop";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { Button } from "@/components/ui/Button";
+import { getSiteContent } from "@/lib/site-content";
 import {
-  amazonUrl,
   comparisonRows,
   featureHighlights,
   heroBullets,
@@ -26,22 +26,21 @@ function SpongeCardDescription({ description, title }: { description: string; ti
   );
 }
 
-export default function Home() {
+export default async function Home() {
+  const content = await getSiteContent();
+
   return (
     <main id="top">
-      <Navbar />
+      <Navbar amazonUrl={content.amazonUrl} />
 
       <section className="hero section">
         <div className="hero-grid">
           <div className="hero-copy hero-copy--overlay">
-            <h1>Stop wondering where that sponge has been</h1>
-            <p className="lead">
-              4 clearly labeled sponges — one for dishes, kitchen counters, bathroom
-              counters, and the toilet. No mix-ups. No second-guessing. Just clean.
-            </p>
+            <h1>{content.heroTitle}</h1>
+            <p className="lead">{content.heroLead}</p>
 
             <div className="hero-actions">
-              <Button ctaLocation="hero" href={amazonUrl}>
+              <Button ctaLocation="hero" href={content.amazonUrl}>
                 Get Chore ClarIDy on Amazon
               </Button>
               <Button href="#how-it-works" variant="secondary">
@@ -50,7 +49,7 @@ export default function Home() {
             </div>
           </div>
 
-          <HeroBackdrop />
+          <HeroBackdrop heroImageUrl={content.heroImageUrl} />
         </div>
       </section>
 
@@ -91,7 +90,7 @@ export default function Home() {
                 </article>
               ))}
               <div className="story-bullets__amazon hero-actions">
-                <Button ctaLocation="how_it_works" href={amazonUrl}>
+                <Button ctaLocation="how_it_works" href={content.amazonUrl}>
                   Get Chore ClarIDy on Amazon
                 </Button>
               </div>
@@ -260,7 +259,7 @@ export default function Home() {
               <br />
               Clean with confidence.
             </p>
-            <Button ctaLocation="cta_bottom" href={amazonUrl}>
+            <Button ctaLocation="cta_bottom" href={content.amazonUrl}>
               Order Chore ClarIDy on Amazon
             </Button>
           </div>
@@ -271,7 +270,11 @@ export default function Home() {
         </div>
       </section>
 
-      <Footer />
+      <Footer
+        amazonUrl={content.amazonUrl}
+        contactEmail={content.contactEmail}
+        siteName={content.siteName}
+      />
     </main>
   );
 }

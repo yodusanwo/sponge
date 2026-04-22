@@ -11,18 +11,22 @@ import {
   type MouseEvent,
 } from "react";
 
-import { contactEmail } from "@/lib/site-data";
+import { contactEmail as defaultContactEmail } from "@/lib/site-data";
 
 type FooterLink = { label: string; href: string };
 
 type Props = {
   links: FooterLink[];
+  contactEmail?: string;
 };
 
 /** Footer labels that open the shared contact modal instead of navigating. */
 const CONTACT_MODAL_LABELS = new Set(["Contact", "Wholesale"]);
 
-export function FooterContactLinks({ links }: Props) {
+export function FooterContactLinks({
+  links,
+  contactEmail = defaultContactEmail,
+}: Props) {
   const [open, setOpen] = useState(false);
   const titleId = useId();
   const nameId = useId();

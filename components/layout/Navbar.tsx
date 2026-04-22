@@ -3,10 +3,14 @@ import Link from "next/link";
 
 import { DesktopNavLinks } from "@/components/layout/DesktopNavLinks";
 import { MobileMenuLinks } from "@/components/layout/MobileMenuLinks";
-import { amazonUrl, navItems } from "@/lib/site-data";
+import { amazonUrl as defaultAmazonUrl, navItems } from "@/lib/site-data";
 import { Button } from "@/components/ui/Button";
 
-export function Navbar() {
+type Props = {
+  amazonUrl?: string;
+};
+
+export function Navbar({ amazonUrl = defaultAmazonUrl }: Props) {
   return (
     <header className="site-header">
       <div className="shell navbar">

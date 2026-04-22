@@ -11,6 +11,8 @@
   --green-100: #e4f2d9;
   --blue-100: #d4e2ee;
   --shadow: 0 12px 30px rgba(25, 48, 74, 0.08);
+  /* Figma text tokens */
+  --Text-Sizes-Text-Medium: 20px;
 }
 
 * {
@@ -322,7 +324,6 @@ h3 {
   letter-spacing: -0.02rem;
 }
 
-.lead,
 .section-heading p,
 .bullet-card p,
 .sponge-card p,
@@ -351,6 +352,7 @@ h3 {
   display: block;
 }
 
+/* Hero lead — Text/Medium/Normal (Figma) */
 .lead {
   align-self: center;
   width: min(47.6875rem, calc(100% - 2rem));
@@ -359,7 +361,7 @@ h3 {
   color: var(--Color-White, #fff);
   text-align: center;
   font-family: Inter, var(--font-body), sans-serif;
-  font-size: 20px;
+  font-size: var(--Text-Sizes-Text-Medium, 20px);
   font-style: normal;
   font-weight: 400;
   line-height: 150%;
@@ -596,6 +598,12 @@ h3 {
   justify-content: center;
 }
 
+/* “Get Chore ClarIDy on Amazon” — single line (hero + how-it-works). */
+.hero-copy--overlay .hero-actions .button--primary,
+#how-it-works .story-bullets__amazon .button--primary {
+  white-space: nowrap;
+}
+
 .split-section {
   grid-template-columns: minmax(0, 1fr) minmax(420px, 600px);
   align-items: center;
@@ -643,7 +651,8 @@ h3 {
   grid-row: 2;
   justify-self: start;
   width: auto;
-  margin-top: 0;
+  /* 32px at default 16px/em (adds to grid row-gap) */
+  margin-top: 2em;
 }
 
 @media (min-width: 1101px) {
@@ -656,6 +665,11 @@ h3 {
   #how-it-works .story-bullets--comparison-grid .bullet-card p {
     text-align: left;
   }
+}
+
+/* Confusion / ClarIDy body lines: 16px top spacing; em scales with paragraph font-size (1.125rem). */
+#how-it-works .story-bullets--comparison-grid .bullet-card p {
+  margin-top: calc(16 / 18 * 1em);
 }
 
 .story-bullets .bullet-card {
@@ -1400,8 +1414,8 @@ h3 {
     width: 100%;
     max-width: 19.5rem;
     margin-top: 1rem;
-    font-size: 20px;
-    line-height: 1.6;
+    font-size: var(--Text-Sizes-Text-Medium, 20px);
+    line-height: 150%;
   }
 
   .hero-actions {

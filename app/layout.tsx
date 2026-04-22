@@ -4,8 +4,9 @@ import { Inter, Poppins } from "next/font/google";
 
 import { CookieConsentBanner } from "@/components/layout/CookieConsentBanner";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { getSiteContent, ogImagePath } from "@/lib/site-content";
 import { getHomePageJsonLd } from "@/lib/structured-data";
-import { gtmId, siteDescription, siteName, siteUrl } from "@/lib/site-data";
+import { gtmId, siteUrl } from "@/lib/site-data";
 import "./globals.css";
 
 const inter = Inter({
@@ -21,68 +22,74 @@ const poppins = Poppins({
   variable: "--font-heading",
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: {
-    default: siteName,
-    template: `%s | ${siteName}`,
-  },
-  description: siteDescription,
-  keywords: [
-    "Chore ClarIDy",
-    "labeled sponges",
-    "cleaning sponges",
-    "kitchen sponges",
-    "household cleaning",
-  ],
-  authors: [{ name: siteName }],
-  alternates: {
-    canonical: "/",
-  },
-  icons: {
-    icon: "/ChloreID.svg",
-    shortcut: "/ChloreID.svg",
-    apple: "/ChloreID.svg",
-  },
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: siteUrl,
-    siteName: siteName,
-    title: siteName,
-    description: siteDescription,
-    images: [
-      {
-        url: "/30compressed.png",
-        alt: "Chore ClarIDy labeled cleaning sponges",
-      },
+export async function generateMetadata(): Promise<Metadata> {
+  const merged = await getSiteContent();
+  const img = ogImagePath(merged);
+  return {
+    metadataBase: new URL(siteUrl),
+    title: {
+      default: merged.siteName,
+      template: `%s | ${merged.siteName}`,
+    },
+    description: merged.siteDescription,
+    keywords: [
+      "Chore ClarIDy",
+      "labeled sponges",
+      "cleaning sponges",
+      "kitchen sponges",
+      "household cleaning",
     ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: siteName,
-    description: siteDescription,
-    images: ["/30compressed.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  verification: {
-    google: "googlecb37c56f958e960d.html",
-  },
-};
+    authors: [{ name: merged.siteName }],
+    alternates: {
+      canonical: "/",
+    },
+    icons: {
+      icon: "/ChloreID.svg",
+      shortcut: "/ChloreID.svg",
+      apple: "/ChloreID.svg",
+    },
+    openGraph: {
+      type: "website",
+      locale: "en_US",
+      url: siteUrl,
+      siteName: merged.siteName,
+      title: merged.siteName,
+      description: merged.siteDescription,
+      images: [
+        {
+          url: img,
+          alt: `${merged.siteName} labeled cleaning sponges`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: merged.siteName,
+      description: merged.siteDescription,
+      images: [img],
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+    verification: {
+      google: "googlecb37c56f958e960d.html",
+    },
+  };
+}
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const merged = await getSiteContent();
+
   return (
     <html lang="en" suppressHydrationWarning>
       <GoogleTagManager gtmId={gtmId} />
@@ -99,7 +106,7 @@ export default function RootLayout({
             width="0"
           />
         </noscript>
-        <JsonLd data={getHomePageJsonLd()} />
+        <JsonLd data={getHomePageJsonLd(merged)} />
         {children}
         <CookieConsentBanner />
       </body>

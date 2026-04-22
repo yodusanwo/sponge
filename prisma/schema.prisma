@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// Single row (id = "default") — editable site copy + image URLs (Vercel Blob or pasted URLs).
+model SiteContent {
+  id              String   @id
+  siteName        String?
+  siteDescription String?  @db.Text
+  amazonUrl       String?
+  contactEmail    String?
+  heroTitle       String?
+  heroLead        String?  @db.Text
+  heroImageUrl    String?
+  ogImageUrl      String?
+  updatedAt       DateTime @updatedAt
+}

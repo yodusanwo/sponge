@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { TrackedAmazonBadgeLink } from "@/components/analytics/TrackedAmazonLink";
 import { FooterContactLinks } from "@/components/contact/FooterContactLinks";
-import { amazonUrl } from "@/lib/site-data";
+import { amazonUrl as defaultAmazonUrl, contactEmail as defaultContactEmail } from "@/lib/site-data";
 
 const footerLinks = [
   { label: "The sponges", href: "#the-sponges" },
@@ -11,7 +11,17 @@ const footerLinks = [
   { label: "Contact", href: "#contact" },
 ];
 
-export function Footer() {
+type Props = {
+  amazonUrl?: string;
+  contactEmail?: string;
+  siteName?: string;
+};
+
+export function Footer({
+  amazonUrl = defaultAmazonUrl,
+  contactEmail = defaultContactEmail,
+  siteName = "Chore ClarIDy",
+}: Props) {
   return (
     <footer className="site-footer">
       <div className="shell footer-grid">
@@ -41,7 +51,7 @@ export function Footer() {
       </div>
 
       <div className="shell footer-credits">
-        <p>© 2026 Chore ClarIDy. All rights reserved.</p>
+        <p>© 2026 {siteName}. All rights reserved.</p>
       </div>
     </footer>
   );
