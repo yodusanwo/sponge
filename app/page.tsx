@@ -20,8 +20,9 @@ function SpongeCardDescription({ description, title }: { description: string; ti
   return (
     <>
       {description.slice(0, breakAt)}
+      {" "}
       <br aria-hidden="true" className="sponge-desc-br--ipad-only" />
-      {description.slice(breakAt).trimStart()}
+      {description.slice(breakAt + 1)}
     </>
   );
 }
