@@ -20,21 +20,25 @@ export function HeroBackdrop({ heroImageUrl }: Props) {
         <Image
           alt=""
           className="hero-photo__img"
+          decoding="async"
           fetchPriority="high"
           fill
           priority
-          sizes="100vw"
+          quality={78}
+          sizes="(max-width: 1920px) 100vw, 1920px"
           src={remote}
         />
       ) : (
         <Image
           alt=""
           className="hero-photo__img"
+          decoding="async"
           fetchPriority="high"
           fill
           placeholder="blur"
           priority
-          sizes="100vw"
+          quality={78}
+          sizes="(max-width: 1920px) 100vw, 1920px"
           src={heroPhotoAsset}
         />
       )}

@@ -43,7 +43,10 @@ const nextConfig: NextConfig = {
   },
   images: {
     formats: ["image/avif", "image/webp"],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    /* Next 16 defaults to qualities [75] only; hero uses 78 — list both so dev server doesn’t warn */
+    qualities: [75, 78],
+    /* Cap max variant: hero was requesting 3840w from a 4096px source — slow first /_next/image cold path */
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     remotePatterns: [
       {
