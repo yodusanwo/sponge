@@ -968,10 +968,15 @@ h3 {
   height: 2.77975rem;
 }
 
-.footer-socials a {
+.footer-socials a,
+.footer-socials .footer-socials__icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+.footer-socials .footer-socials__icon {
+  cursor: default;
 }
 
 .footer-socials--right {
