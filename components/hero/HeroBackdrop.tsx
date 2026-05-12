@@ -10,6 +10,7 @@ type Props = {
 /**
  * Full-bleed hero background. Uses `next/image` with `priority` so Next injects
  * a matching `react.preload()` (LCP) with `imageSrcSet` / `imageSizes` on the App Router.
+ * `decoding="sync"` keeps the LCP decode on the critical path (avoids async decode delay).
  */
 export function HeroBackdrop({ heroImageUrl }: Props) {
   const remote = heroImageUrl?.startsWith("http") ? heroImageUrl : null;
@@ -20,11 +21,11 @@ export function HeroBackdrop({ heroImageUrl }: Props) {
         <Image
           alt=""
           className="hero-photo__img"
-          decoding="async"
+          decoding="sync"
           fetchPriority="high"
           fill
           priority
-          quality={78}
+          quality={75}
           sizes="(max-width: 1920px) 100vw, 1920px"
           src={remote}
         />
@@ -32,12 +33,12 @@ export function HeroBackdrop({ heroImageUrl }: Props) {
         <Image
           alt=""
           className="hero-photo__img"
-          decoding="async"
+          decoding="sync"
           fetchPriority="high"
           fill
           placeholder="blur"
           priority
-          quality={78}
+          quality={75}
           sizes="(max-width: 1920px) 100vw, 1920px"
           src={heroPhotoAsset}
         />

@@ -286,6 +286,13 @@ main {
   position: relative;
 }
 
+/* Stack copy + photo in one cell so we can put <Image> first in DOM for earlier fetch (LCP). */
+.hero-grid > .hero-copy--overlay,
+.hero-grid > .hero-photo {
+  grid-column: 1;
+  grid-row: 1;
+}
+
 .eyebrow,
 .sponge-card__name {
   color: var(--blue-700);

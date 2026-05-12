@@ -36,6 +36,7 @@ export default async function Home() {
 
       <section className="hero section">
         <div className="hero-grid">
+          <HeroBackdrop heroImageUrl={content.heroImageUrl} />
           <div className="hero-copy hero-copy--overlay">
             <h1>{content.heroTitle}</h1>
             <p className="lead">{content.heroLead}</p>
@@ -49,8 +50,6 @@ export default async function Home() {
               </Button>
             </div>
           </div>
-
-          <HeroBackdrop heroImageUrl={content.heroImageUrl} />
         </div>
       </section>
 
