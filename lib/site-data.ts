@@ -116,7 +116,7 @@ export const featureHighlights: Bullet[] = [
   {
     title: "Busy family\nhouseholds",
     description:
-      "Everyone knows which sponge\ngoes where. No mix-ups. No\narguments",
+      "Everyone knows which sponge\ngoes where. No mix-ups. No\narguments.",
   },
   {
     title: "Shared homes\nand roommates",
