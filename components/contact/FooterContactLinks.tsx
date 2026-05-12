@@ -11,24 +11,23 @@ import {
   type MouseEvent,
 } from "react";
 
-import { contactEmail as defaultContactEmail } from "@/lib/site-data";
-
 type FooterLink = { label: string; href: string };
 
 type Props = {
   links: FooterLink[];
-  contactEmail?: string;
 };
+
+type SubmitState = "idle" | "sending" | "sent" | "error";
 
 /** Footer labels that open the shared contact modal instead of navigating. */
 const CONTACT_MODAL_LABELS = new Set(["Contact", "Wholesale"]);
 
-export function FooterContactLinks({
-  links,
-  contactEmail = defaultContactEmail,
-}: Props) {
+export function FooterContactLinks({ links }: Props) {
   const [open, setOpen] = useState(false);
+  const [submitState, setSubmitState] = useState<SubmitState>("idle");
+  const [statusMessage, setStatusMessage] = useState("");
   const titleId = useId();
+  const statusId = useId();
   const nameId = useId();
   const emailId = useId();
   const messageId = useId();
@@ -36,6 +35,8 @@ export function FooterContactLinks({
 
   const close = useCallback(() => {
     setOpen(false);
+    setSubmitState("idle");
+    setStatusMessage("");
     formRef.current?.reset();
   }, []);
 
@@ -57,20 +58,45 @@ export function FooterContactLinks({
     if (e.target === e.currentTarget) close();
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const fd = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const fd = new FormData(form);
     const name = String(fd.get("name") ?? "").trim();
     const email = String(fd.get("email") ?? "").trim();
     const message = String(fd.get("message") ?? "").trim();
-    if (!name || !email || !message) return;
+    if (!name || !email || !message) {
+      setSubmitState("error");
+      setStatusMessage("Please fill out every field.");
+      return;
+    }
 
-    const subject = encodeURIComponent(`Chore ClarIDy contact from ${name}`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\n\n${message}`,
-    );
-    window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
-    close();
+    setSubmitState("sending");
+    setStatusMessage("Sending your message...");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+      const payload = (await response.json().catch(() => ({}))) as { error?: string };
+
+      if (!response.ok) {
+        throw new Error(payload.error || "Email could not be sent.");
+      }
+
+      form.reset();
+      setSubmitState("sent");
+      setStatusMessage("Thanks! Your message has been sent.");
+    } catch (error) {
+      setSubmitState("error");
+      setStatusMessage(
+        error instanceof Error
+          ? error.message
+          : "Email could not be sent. Please try again.",
+      );
+    }
   };
 
   return (
@@ -120,6 +146,7 @@ export function FooterContactLinks({
             </p>
             <form
               ref={formRef}
+              aria-describedby={statusMessage ? statusId : undefined}
               className="contact-form"
               noValidate
               onSubmit={handleSubmit}
@@ -163,10 +190,23 @@ export function FooterContactLinks({
                 />
               </div>
               <div className="contact-form__actions">
-                <button className="button button--primary button--full" type="submit">
-                  Send
+                <button
+                  className="button button--primary button--full"
+                  disabled={submitState === "sending"}
+                  type="submit"
+                >
+                  {submitState === "sending" ? "Sending..." : "Send"}
                 </button>
               </div>
+              {statusMessage ? (
+                <p
+                  className={`contact-form__status contact-form__status--${submitState}`}
+                  id={statusId}
+                  role="status"
+                >
+                  {statusMessage}
+                </p>
+              ) : null}
             </form>
           </div>
         </div>
