@@ -44,9 +44,14 @@ export function Footer({
           <Link href="https://www.tiktok.com/@choreclaridy" rel="noreferrer" target="_blank">
             <Image alt="TikTok" height={21} src="/TikTok.svg" width={18} />
           </Link>
-          <span className="footer-socials__icon" title="Instagram">
+          <Link
+            aria-label="Instagram"
+            href="https://www.instagram.com/choreclaridy/"
+            rel="noreferrer"
+            target="_blank"
+          >
             <Image alt="Instagram" height={24} src="/Instagram.svg" width={24} />
-          </span>
+          </Link>
         </div>
       </div>
 
