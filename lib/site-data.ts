@@ -144,7 +144,7 @@ export const wholesaleBullets: Bullet[] = [
   {
     title: "A small change that simplifies your routine",
     description:
-      "Whether you're running a busy household or just tired of the guessing game — Chore ClarIDy makes your cleaning routine feel effortless.",
+      "Whether you're running a busy household or just tired of the guessing game. Chore ClarIDy makes your cleaning routine feel effortless.",
   },
 ];
 

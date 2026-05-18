@@ -543,6 +543,14 @@ h3 {
   white-space: nowrap;
 }
 
+.headline-break-after-that--desktop {
+  display: none;
+}
+
+.who-its-for-break--desktop {
+  display: none;
+}
+
 .feature-card__title-line {
   display: block;
   white-space: nowrap;
@@ -582,6 +590,14 @@ h3 {
 @media (min-width: 1200px) {
   .hero-copy--overlay h1 {
     white-space: nowrap;
+  }
+
+  .headline-break-after-that--desktop {
+    display: initial;
+  }
+
+  .who-its-for-break--desktop {
+    display: initial;
   }
 }
 

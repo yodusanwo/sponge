@@ -27,6 +27,41 @@ function SpongeCardDescription({ description, title }: { description: string; ti
   );
 }
 
+function DesktopBreakAfterThat({ text }: { text: string }) {
+  const marker = "that ";
+  const idx = text.toLowerCase().indexOf(marker);
+  if (idx === -1) return <>{text}</>;
+  const before = text.slice(0, idx + 4);
+  const after = text.slice(idx + 5);
+  if (!after) return <>{text}</>;
+
+  return (
+    <>
+      {before}
+      {" "}
+      <br aria-hidden="true" className="headline-break-after-that--desktop" />
+      {after}
+    </>
+  );
+}
+
+function DesktopBreakBeforeChore({ text }: { text: string }) {
+  const marker = " Chore ClarIDy";
+  const idx = text.indexOf(marker);
+  if (idx === -1) return <>{text}</>;
+  const before = text.slice(0, idx).trimEnd();
+  const after = text.slice(idx + 1);
+  if (!after) return <>{text}</>;
+
+  return (
+    <>
+      {before}
+      <br aria-hidden="true" className="who-its-for-break--desktop" />
+      {after}
+    </>
+  );
+}
+
 export default async function Home() {
   const content = await getSiteContent();
 
@@ -38,7 +73,7 @@ export default async function Home() {
         <div className="hero-grid">
           <HeroBackdrop heroImageUrl={content.heroImageUrl} />
           <div className="hero-copy hero-copy--overlay">
-            <h1>{content.heroTitle}</h1>
+            <h1><DesktopBreakAfterThat text={content.heroTitle} /></h1>
             <p className="lead">{content.heroLead}</p>
 
             <div className="hero-actions">
@@ -207,7 +242,7 @@ export default async function Home() {
           <div className="section-heading">
             <h2>{wholesaleBullets[1]?.title}</h2>
             <p>
-              {wholesaleBullets[1]?.description}
+              <DesktopBreakBeforeChore text={wholesaleBullets[1]?.description ?? ""} />
             </p>
           </div>
         </div>
