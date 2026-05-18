@@ -56,7 +56,12 @@ function DesktopBreakBeforeChore({ text }: { text: string }) {
   return (
     <>
       {before}
+      <span aria-hidden="true" className="who-its-for-dash--desktop">
+        {" "}
+        —
+      </span>
       <br aria-hidden="true" className="who-its-for-break--desktop" />
+      {" "}
       {after}
     </>
   );

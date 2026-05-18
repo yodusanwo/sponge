@@ -551,6 +551,10 @@ h3 {
   display: none;
 }
 
+.who-its-for-dash--desktop {
+  display: none;
+}
+
 .feature-card__title-line {
   display: block;
   white-space: nowrap;
@@ -597,6 +601,10 @@ h3 {
   }
 
   .who-its-for-break--desktop {
+    display: initial;
+  }
+
+  .who-its-for-dash--desktop {
     display: initial;
   }
 }
